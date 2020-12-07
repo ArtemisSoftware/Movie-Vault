@@ -71,9 +71,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-//    // Paging 3
-//    implementation "androidx.paging:paging-runtime:$pagingVersion"
-//
+    // Paging 3
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+
 //    // Glide
 //    implementation "com.github.bumptech.glide:glide:$glideVersion"
 
