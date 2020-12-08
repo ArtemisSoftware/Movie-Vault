@@ -3,12 +3,14 @@ package com.artemissoftware.movievault.di
 import com.artemissoftware.movievault.api.MovieApi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@Singleton
+@InstallIn(ApplicationComponent::class)
 object AppModule {
 
     @Provides
