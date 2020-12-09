@@ -9,6 +9,11 @@ import com.artemissoftware.movievault.R
 import com.artemissoftware.movievault.databinding.FragmentMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+import android.view.Menu
+import android.view.MenuInflater
+
+import androidx.appcompat.widget.SearchView
+
 @AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.fragment_movie){
 
@@ -39,5 +44,33 @@ class MovieFragment : Fragment(R.layout.fragment_movie){
 
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+
+        setHasOptionsMenu(true)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_search, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query!=null){
+                    binding.rvMovie.scrollToPosition(0)
+                    viewModel.searchMovies(query)
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
     }
 }
