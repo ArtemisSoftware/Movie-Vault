@@ -13,6 +13,9 @@ import android.view.Menu
 import android.view.MenuInflater
 
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
+import androidx.paging.LoadState
+import kotlinx.android.synthetic.main.movie_load_state_footer.*
 
 @AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.fragment_movie){
@@ -39,6 +42,28 @@ class MovieFragment : Fragment(R.layout.fragment_movie){
                 adapter.retry()
             }
         }
+
+        adapter.addLoadStateListener { loadState ->
+
+            binding.apply {
+
+                progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+                rvMovie.isVisible = loadState.source.refresh is LoadState.NotLoading
+                btnTryAgain.isVisible =loadState.source.refresh is LoadState.Error
+                tvFailed.isVisible = loadState.source.refresh is LoadState.Error
+
+                //not found
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    adapter.itemCount < 1){
+                    rvMovie.isVisible = false
+                    tvNotFound.isVisible = true
+                } else {
+                    tvNotFound.isVisible = false
+                }
+            }
+        }
+
 
         viewModel.movies.observe(viewLifecycleOwner){
 
