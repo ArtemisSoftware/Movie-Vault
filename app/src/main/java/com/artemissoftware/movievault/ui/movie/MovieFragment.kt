@@ -26,13 +26,13 @@ class MovieFragment : Fragment(R.layout.fragment_movie){
 
         binding.apply {
             rvMovie.setHasFixedSize(true)
-            rvMovie.adapter = adapter/*.withLoadStateHeaderAndFooter(
+            rvMovie.adapter = adapter.withLoadStateHeaderAndFooter(
                 header = MovieLoadStateAdapter {adapter.retry()},
                 footer = MovieLoadStateAdapter {adapter.retry()}
             )
             btnTryAgain.setOnClickListener {
                 adapter.retry()
-            }*/
+            }
         }
 
         viewModel.movies.observe(viewLifecycleOwner){
