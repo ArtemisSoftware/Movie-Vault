@@ -14,11 +14,13 @@ import android.view.MenuInflater
 
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.artemissoftware.movievault.data.Movie
 import kotlinx.android.synthetic.main.movie_load_state_footer.*
 
 @AndroidEntryPoint
-class MovieFragment : Fragment(R.layout.fragment_movie){
+class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClickListener{
 
     private val viewModel : MovieViewModel by viewModels()
     private var _binding : FragmentMovieBinding? = null
@@ -29,7 +31,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie){
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentMovieBinding.bind(view)
-        val adapter = MovieAdapter()
+        val adapter = MovieAdapter(this)
 
 
         binding.apply {
@@ -71,6 +73,12 @@ class MovieFragment : Fragment(R.layout.fragment_movie){
         }
 
         setHasOptionsMenu(true)
+    }
+
+
+    override fun onItemClick(movie: Movie) {
+        val action = MovieFragmentDirections.actionMovieFragmentToDetailsFragment(movie)
+        findNavController().navigate(action)
     }
 
 

@@ -11,7 +11,7 @@ import com.artemissoftware.movievault.databinding.ItemMovieBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-class MovieAdapter (/*private val listener : OnItemClickListener*/) : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(COMPARATOR) {
+class MovieAdapter (private val listener : OnItemClickListener) : PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,7 +33,7 @@ class MovieAdapter (/*private val listener : OnItemClickListener*/) : PagingData
                 if (position != RecyclerView.NO_POSITION){
                     val item = getItem(position)
                     if (item!=null){
-                        //--listener.onItemClick(item)
+                        listener.onItemClick(item)
                     }
                 }
             }
