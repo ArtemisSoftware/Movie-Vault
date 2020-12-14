@@ -77,6 +77,16 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
+    // Room components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 }
 
 kapt {
