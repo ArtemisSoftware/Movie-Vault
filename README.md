@@ -1,5 +1,5 @@
 # Movie-Vault
-Movie App 
+Movie App that allows user to search movie and favourite them
 
 
 # Architecture
