@@ -8,7 +8,7 @@ import java.io.Serializable
 
 @Entity(tableName = "favorite_movie")
 @Parcelize
-class Favorite(
+data class Favorite(
     var id_movie: String,
     val original_title: String,
     val overview : String?,

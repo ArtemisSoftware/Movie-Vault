@@ -14,6 +14,7 @@
             android:id="@+id/action_movieFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
 
+
     </fragment>
 
 
@@ -21,12 +22,16 @@
         android:id="@+id/favouriteFragment"
         android:name="com.artemissoftware.movievault.ui.favourite.FavouriteFragment"
         android:label="Favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.artemissoftware.movievault.ui.details.DetailsFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        android:label="Details"
+        tools:layout="@layout/fragment_details">
         <argument
             android:name="movie"
             app:argType="com.artemissoftware.movievault.data.Movie" />

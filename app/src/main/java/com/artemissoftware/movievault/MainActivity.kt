@@ -10,11 +10,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.artemissoftware.movievault.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        navController = navHostFragment.findNavController()
 
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.nav_movie, R.id.nav_favorite).build()
+        navController = navHostFragment.findNavController()
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.movieFragment, R.id.favouriteFragment))
+
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.apply {
-            navBottom.setupWithNavController(navController)
-        }
+        nav_bottom.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
